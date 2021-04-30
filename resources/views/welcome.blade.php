@@ -9,7 +9,7 @@
     </head>
     <body>
         <div class="h-screen grid justify-center items-center">
-        <h1 class="shadow hover:shadow-lg transition duration-500 text-9xl p-8 rounded-2xl">
+            <h1 class="shadow hover:shadow-lg transition duration-500 text-9xl p-8 rounded-2xl">
                 Laravel
             </h1>
         </div>
