@@ -31,7 +31,7 @@
                                 </svg>
                             </div>
                             <input id="search" name="search"
-                                   class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                   class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-green-500 focus:border-green-500 sm:text-sm"
                                    placeholder="Search" type="search">
                         </div>
                     </div>
@@ -39,13 +39,13 @@
             </div>
 
             <div class="hidden flex-1 justify-end lg:ml-6 lg:flex lg:space-x-8">
-                <!-- Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" -->
+                <!-- Current: "border-green-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" -->
                 <a href="{{ route('services') }}"
-                   class="{{ request()->is('services*') ? 'border-indigo-500 text-gray-900' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700' }} inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                   class="{{ request()->is('services*') ? 'border-green-500 text-gray-900' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700' }} inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
                     Services
                 </a>
                 <a href="{{ route('projects') }}"
-                   class="{{ request()->is('projects*') ? 'border-indigo-500 text-gray-900' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700' }} inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                   class="{{ request()->is('projects*') ? 'border-green-500 text-gray-900' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700' }} inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
                     Projects
                 </a>
             </div>
@@ -63,18 +63,17 @@
                     <div class="ml-4 relative flex-shrink-0">
                         <div>
                             <button type="button"
-                                    class="bg-white rounded-full flex text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                    class="bg-white rounded-full flex text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
                                     id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                                 <span class="sr-only">Open user menu</span>
-                                <img class="h-8 w-8 rounded-full"
-                                     src="{{ asset('storage/' . $user->profile_picture)  }}"
-                                     alt="profile picture">
+
+                                <x-profile-picture :user="auth()->user()"></x-profile-picture>
                             </button>
                         </div>
 
                         <!-- Dropdown menu, show/hide based on menu state. -->
                         <div
-                            class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+                            class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-10"
                             id="user-menu-dropdown" role="menu" aria-orientation="vertical"
                             aria-labelledby="user-menu-button" tabindex="-1">
                             <a href="{{ route('view-profile', auth()->id()) }}"
@@ -91,10 +90,12 @@
                             const userMenu = document.getElementById("user-menu-button");
                             const dropdown = document.getElementById("user-menu-dropdown");
 
-                            userMenu.onclick = () => {
+                            const closeDropDown = () => {
                                 isOpen = !isOpen;
                                 dropdown.style.display = isOpen ? "block" : "none";
                             };
+
+                            userMenu.onclick = () => closeDropDown();
                         </script>
                     </div>
                 </div>

@@ -11,5 +11,7 @@
 @includeWhen(!request()->is('login') && !request()->is('register'), 'layout.navbar')
 
 @yield('content')
+
+@include('layout.footer')
 </body>
 </html>

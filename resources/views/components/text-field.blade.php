@@ -2,7 +2,7 @@
 
 'name',
 'type' => 'text',
-'autocomplete' => false,
+'autocomplete' => 'off',
 'required' => false,
 'value' => ''
 
@@ -10,22 +10,25 @@
 
 <div>
     <label for="{{ $name }}"
-           class="block text-sm font-medium text-gray-700">{{ \Illuminate\Support\Str::of($name)->replace('-', ' ')->title() }}</label>
+           class="block text-sm font-medium text-gray-700">
+        {{ \Illuminate\Support\Str::of($name)->replace('-', ' ')->title() }}
+        @if (!$required) <span class="font-light">(Optional)</span> @endif
+    </label>
     <div class="mt-1 relative rounded-md shadow-sm">
         @if ($type == 'textarea')
             <div class="mt-1 sm:mt-0 sm:col-span-2">
-                <textarea id="{{ $name }}" name="{{ $name }}" rows="3" autocomplete="{{ $autocomplete }}"
+                <textarea id="{{ $name }}" name="{{ $name }}" rows="7" autocomplete="{{ $autocomplete }}"
                           @if ($required) required @endif
-                          class="block shadow-sm w-full focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md @error($name) pr-10 border-red-300 text-red-900 placeholder-red-300 focus:ring-red-500 focus:border-red-500 @enderror"
+                          class="block shadow-sm w-full focus:ring-green-500 focus:border-green-500 sm:text-sm border-gray-300 rounded-md @error($name) pr-10 border-red-300 text-red-900 placeholder-red-300 focus:ring-red-500 focus:border-red-500 @enderror"
                           @error($name) aria-invalid="true" aria-describedby="{{ $name }}-error" @enderror
-                >{{ $value }}</textarea>
+                >{!! $slot !!}</textarea>
             </div>
         @else
             <input id="{{ $name }}" name="{{ $name }}" type="{{ $type }}" autocomplete="{{ $autocomplete }}"
                    @if ($required) required @endif
-                   class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm @error($name) pr-10 border-red-300 text-red-900 placeholder-red-300 focus:ring-red-500 focus:border-red-500 @enderror"
+                   class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm @error($name) pr-10 border-red-300 text-red-900 placeholder-red-300 focus:ring-red-500 focus:border-red-500 @enderror"
                    @error($name) aria-invalid="true" aria-describedby="{{ $name }}-error" @enderror
-                   value="{{ $value }}">
+                   value="{{ $slot }}">
         @endif
 
         @error($name)

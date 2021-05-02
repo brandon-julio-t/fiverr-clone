@@ -1,5 +1,12 @@
 <?php
 
+use App\Http\Controllers\Authentication\LoginController;
+use App\Http\Controllers\Authentication\LogoutController;
+use App\Http\Controllers\Authentication\RegisterController;
+use App\Http\Controllers\Gig\GigViewController;
+use App\Http\Controllers\Profile\ProfileEditController;
+use App\Http\Controllers\Profile\ProfileUpdateController;
+use App\Http\Controllers\Profile\ProfileViewController;
 use App\Http\Middleware\Authenticate;
 use App\Http\Middleware\RedirectIfAuthenticated;
 use Illuminate\Support\Facades\Route;
@@ -17,8 +24,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware(Authenticate::class)->group(function () {
 
-    Route::get('/profile/edit/{user}', 'profile\ProfileEditController')->name('edit-profile');
-    Route::put('/profile/{user}', 'profile\ProfileUpdateController')->name('update-profile');
+    Route::get('/profile/edit/{user}', ProfileEditController::class)->name('edit-profile');
+    Route::put('/profile/{user}', ProfileUpdateController::class)->name('update-profile');
 
 });
 
@@ -26,16 +33,18 @@ Route::view('/', 'home')->name('home');
 Route::view('/services', 'services')->name('services');
 Route::view('/projects', 'projects')->name('projects');
 
-Route::get('/profile/{user}', 'profile\ProfileViewController')->name('view-profile');
+Route::get('/profile/{user}', ProfileViewController::class)->name('view-profile');
+
+Route::get('/gig/{gig}', GigViewController::class)->name('view-gig');
 
 Route::middleware(RedirectIfAuthenticated::class)->group(function () {
 
     Route::view('/login', 'authentication.login')->name('login');
-    Route::post('/login', 'authentication\LoginController')->name('do-login');
+    Route::post('/login', LoginController::class)->name('do-login');
 
     Route::view('/register', 'authentication.register')->name('register');
-    Route::post('/register', 'authentication\RegisterController')->name('do-register');
+    Route::post('/register', RegisterController::class)->name('do-register');
 
 });
 
-Route::any('/logout', 'authentication\LogoutController')->name('logout');
+Route::any('/logout', LogoutController::class)->name('logout');

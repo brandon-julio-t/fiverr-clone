@@ -3,7 +3,7 @@
 @section('title', 'Login')
 
 @section('content')
-    @if($errors->has('login'))
+    @if ($errors->has('login'))
         <div id="login-error" class="relative bg-red-600">
             <div class="max-w-7xl mx-auto py-3 px-3 sm:px-6 lg:px-8">
                 <div class="pr-16 sm:text-center sm:px-16">
@@ -56,14 +56,14 @@
                     <div class="flex items-center justify-between">
                         <div class="flex items-center">
                             <input id="remember_me" name="remember_me" type="checkbox"
-                                   class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+                                   class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded">
                             <label for="remember_me" class="ml-2 block text-sm text-gray-900">
                                 Remember me
                             </label>
                         </div>
 
                         <div class="text-sm">
-                            <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">
+                            <a href="#" class="font-medium text-green-600 hover:text-green-500">
                                 Forgot your password?
                             </a>
                         </div>

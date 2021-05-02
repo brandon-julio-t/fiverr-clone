@@ -9,15 +9,13 @@
             @csrf
             @method('put')
 
-            <x-text-field name="name" type="text" autocomplete="name" :required="true"
-                          value="{{ $user->name }}"></x-text-field>
-
-            <x-text-field name="email" type="email" autocomplete="email" :required="true"
-                          value="{{ $user->email }}"></x-text-field>
-
-            <x-text-field name="about" type="textarea" autocomplete="name" value="{{ $user->about }}"></x-text-field>
-
+            <x-text-field name="name" type="text" autocomplete="name" :required="true">{{ $user->name }}</x-text-field>
+            <x-text-field name="email" type="email" autocomplete="email" :required="true">
+                {{ $user->email }}
+            </x-text-field>
+            <x-text-field name="about" type="text" autocomplete="name">{{ $user->about }}</x-text-field>
             <x-text-field name="profile-picture" type="file"></x-text-field>
+            <x-text-field name="description" type="textarea">{{ $user->description }}</x-text-field>
 
             <section class="grid gap-4">
                 <x-button type="submit">Submit</x-button>

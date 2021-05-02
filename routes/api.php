@@ -1,7 +1,9 @@
 <?php
 
+use App\Models\Gig;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\View\ComponentAttributeBag;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +19,20 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/gigs', function () {
+    $paginated = Gig::paginate(15);
+
+    $data = [
+        'next_page_url' => $paginated->path() . '?page=' . ($paginated->currentPage() + 1),
+    ];
+
+    $data['gigs'] = collect($paginated->items())->map(function ($gig) {
+        return view('components.gig-card', [
+            'gig' => $gig,
+            'attributes' => new ComponentAttributeBag,
+        ])->render();
+    });
+
+    return $data;
+})->name('infinite-scroll-gigs');
