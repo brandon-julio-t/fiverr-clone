@@ -3,7 +3,7 @@
 @section('title', $user->name)
 
 @section('content')
-    <main class="max-w-7xl mx-auto my-12 sm:px-6 lg:px-8 grid grid-cols-8 gap-16">
+    <main class="max-w-7xl mx-auto my-12 sm:px-6 lg:px-8 grid grid-cols-8 gap-8">
         <section class="col-span-3">
             <div class="bg-white overflow-hidden shadow rounded-lg mx-auto sticky top-12">
                 <div class="px-4 py-5 sm:p-6 grid grid-cols-1 gap-4 justify-center items-center text-center">
@@ -56,7 +56,19 @@
         </section>
 
         <section class="col-span-5">
-            <h2 class="text-lg font-bold">{{ $user->name }}'s Gigs</h2>
+            <div class="grid grid-cols-8">
+                <h2 class="text-lg font-bold col-span-5">
+                    {{ $user->name }}'s Gigs
+                </h2>
+                <div class="col-span-3">
+                    <x-button href="{{ route('create-gig') }}">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
+                        </svg>
+                        Create Gig
+                    </x-button>
+                </div>
+            </div>
             <div class="grid grid-cols-3 gap-4 mt-4">
                 @foreach ($user->gigs as $gig)
                     <x-gig-card :gig="$gig"></x-gig-card>

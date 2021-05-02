@@ -12,10 +12,18 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @method static paginate(int $int)
  * @method static simplePaginate(int $int)
  * @method static find(array|string|null $id)
+ * @method static create(array $data)
  */
 class Gig extends Model
 {
     use HasFactory;
+
+    /**
+     * The attributes that aren't mass assignable.
+     *
+     * @var array
+     */
+    protected $guarded = [];
 
     public function user(): BelongsTo
     {
