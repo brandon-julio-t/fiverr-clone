@@ -10,6 +10,8 @@
 <body>
 @includeWhen(!request()->is('login') && !request()->is('register'), 'layout.navbar')
 
+@include('layout.announcement')
+
 @yield('content')
 
 @include('layout.footer')

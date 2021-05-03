@@ -24,7 +24,7 @@ class GigImageFactory extends Factory
     {
         return [
             'gig_id' => $this->faker->randomElement(Gig::pluck('id')),
-            'path' => 'storage/' . $this->faker->randomElement(['dummy1', 'dummy2', 'dummy3']) . '.jpg',
+            'path' => $this->faker->randomElement(['dummy1', 'dummy2', 'dummy3']) . '.jpg',
         ];
     }
 }

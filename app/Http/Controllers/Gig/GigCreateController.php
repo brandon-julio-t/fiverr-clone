@@ -27,7 +27,7 @@ class GigCreateController extends Controller
             $gig = Gig::create(collect($data)->except('images')->all());
 
             collect($data['images'])->each(function (UploadedFile $image) use ($gig) {
-                $path = 'storage/' . $image->store('gig-images', 'public');
+                $path = $image->store('gig-images', 'public');
                 GigImage::create([
                     'gig_id' => $gig->id,
                     'path' => $path

@@ -70,7 +70,7 @@
                 </div>
             </div>
             <div class="grid grid-cols-3 gap-4 mt-4">
-                @foreach ($user->gigs as $gig)
+                @foreach ($user->gigs()->orderBy('created_at', 'desc')->get() as $gig)
                     <x-gig-card :gig="$gig"></x-gig-card>
                 @endforeach
             </div>

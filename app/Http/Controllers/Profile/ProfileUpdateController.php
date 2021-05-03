@@ -26,7 +26,7 @@ class ProfileUpdateController extends Controller
                 Storage::disk('public')->delete($user->profile_picture);
             }
 
-            $data['profile_picture'] = 'storage/' . $request->file('profile-picture')->store('profile-pictures', 'public');
+            $data['profile_picture'] = $request->file('profile-picture')->store('profile-pictures', 'public');
         }
 
         $user->update($data);

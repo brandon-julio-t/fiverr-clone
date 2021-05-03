@@ -4,6 +4,9 @@ use App\Http\Controllers\Authentication\LoginController;
 use App\Http\Controllers\Authentication\LogoutController;
 use App\Http\Controllers\Authentication\RegisterController;
 use App\Http\Controllers\Gig\GigCreateController;
+use App\Http\Controllers\Gig\GigDeleteController;
+use App\Http\Controllers\Gig\GigEditController;
+use App\Http\Controllers\Gig\GigUpdateController;
 use App\Http\Controllers\Gig\GigViewController;
 use App\Http\Controllers\Profile\ProfileEditController;
 use App\Http\Controllers\Profile\ProfileUpdateController;
@@ -38,6 +41,9 @@ Route::get('/profile/{user}', ProfileViewController::class)->name('view-profile'
 
 Route::view('/gig/create', 'gig.create-gig')->name('create-gig');
 Route::post('/gig/create', GigCreateController::class)->name('do-create-gig');
+Route::get('/gig/edit/{gig}', GigEditController::class)->name('edit-gig');
+Route::put('/gig/{gig}', GigUpdateController::class)->name('update-gig');
+Route::delete('/gig/{gig}', GigDeleteController::class)->name('delete-gig');
 Route::get('/gig/{gig}', GigViewController::class)->name('view-gig');
 
 Route::middleware(RedirectIfAuthenticated::class)->group(function () {

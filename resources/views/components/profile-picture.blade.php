@@ -6,8 +6,8 @@
 ])
 
 @if ($user->profile_picture)
-    <img class="@switch($size) @case('small') h-8 w-8 @break @case('medium') h-24 w-24 @break @case('big') h-40 w-40 @break @endswitch rounded-full object-cover"
-         {{ $attributes }} src="{{ asset($user->profile_picture)  }}" alt="profile picture">
+    <img class="@switch($size) @case('small') h-8 w-8 @break @case('medium') h-24 w-24 @break @case('big') h-40 w-40 @break @endswitch mx-auto rounded-full object-cover"
+         {{ $attributes }} src="{{ asset('storage/' . $user->profile_picture)  }}" alt="profile picture">
 @else
     <span
         class="inline-block justify-self-center @switch($size) @case('small') h-8 w-8 @break @case('medium') h-24 w-24 @break @case('big') h-40 w-40 @break @endswitch rounded-full overflow-hidden bg-gray-100" {{ $attributes }}>

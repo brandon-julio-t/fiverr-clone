@@ -13,6 +13,10 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @method static simplePaginate(int $int)
  * @method static find(array|string|null $id)
  * @method static create(array $data)
+ * @method static orderBy(string $string, string $string1)
+ * @property mixed user
+ * @property mixed id
+ * @property mixed gigImages
  */
 class Gig extends Model
 {

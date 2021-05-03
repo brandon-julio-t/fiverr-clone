@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class GigCreateRequest extends FormRequest
+class GigUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,9 @@ class GigCreateRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return auth()->check();
+        $gig = $this->route('gig');
+        $user = $this->user();
+        return $gig->user->id == $user->id;
     }
 
     /**
@@ -34,8 +36,8 @@ class GigCreateRequest extends FormRequest
             'basic_price_description' => 'required|string',
             'standard_price_description' => 'required|string',
             'premium_price_description' => 'required|string',
-            'images' => 'required|array|min:1',
-            'images.*' => 'required|file|image',
+            'images' => 'array|min:1',
+            'images.*' => 'file|image',
         ];
     }
 }

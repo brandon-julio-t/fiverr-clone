@@ -4,16 +4,7 @@
 
 @section('content')
     <main class="max-w-7xl mx-auto sm:px-6 lg:px-8 my-16">
-        @if ($errors->any())
-            <section class="bg-red-600 text-white mb-4 p-4 rounded">
-                <h2>Please fix the following errors.</h2>
-                <ul class="list-disc list-inside">
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </section>
-        @endif
+        @include('partials.errors')
 
         <form class="grid grid-cols-1 gap-4" action="{{ route('create-gig') }}" method="post"
               enctype="multipart/form-data">
@@ -48,6 +39,7 @@
             <x-text-field name="images[]" type="file" :multiple="true" :required="true"></x-text-field>
 
             <x-button type="submit">Submit</x-button>
+            <x-button href="{{ url()->previous() }}" :secondary="true">Cancel</x-button>
         </form>
     </main>
 @endsection

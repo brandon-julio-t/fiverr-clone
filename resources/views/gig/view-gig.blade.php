@@ -29,11 +29,17 @@
                 <span>({{ $gig->gigReviews()->count() }})</span>
             </p>
 
-            <img src="{{ asset($gig->gigImages->first()->path) }}" alt="thumbnail">
+            @can('update', $gig)
+                <div class="my-4">
+                    <x-button href="{{ route('edit-gig', $gig) }}">Edit Gig</x-button>
+                </div>
+            @endcan
+
+            <img src="{{ asset('storage/' . $gig->gigImages->first()->path) }}" alt="thumbnail">
 
             <div class="flex overflow-auto">
                 @foreach ($gig->gigImages->whereNotIn('id', $gig->gigImages->first()->id) as $image)
-                    <img class="w-32" src="{{ asset($image->path) }}" alt="gig image">
+                    <img class="w-32 object-cover bgce" src="{{ asset('storage/' . $image->path) }}" alt="gig image">
                 @endforeach
             </div>
 

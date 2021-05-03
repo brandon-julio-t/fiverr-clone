@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
+use App\Events\GigImageDeleted;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * @method static create(array $array)
+ * @property mixed path
  */
 class GigImage extends Model
 {
@@ -19,6 +21,13 @@ class GigImage extends Model
      * @var array
      */
     protected $guarded = [];
+
+    /**
+     * The event map for the model.
+     *
+     * @var array
+     */
+    protected $dispatchesEvents = ['deleted' => GigImageDeleted::class];
 
     public function gig(): BelongsTo
     {

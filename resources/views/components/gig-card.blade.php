@@ -8,7 +8,7 @@
     <div class="bg-white overflow-hidden shadow rounded-lg divide-y divide-gray-200">
         <section>
             <a href="{{ route('view-gig', $gig) }}">
-                <img class="cursor-pointer" src="{{ asset($gig->gigImages->first()->path) }}" alt="gig thumbnail">
+                <img class="cursor-pointer" src="{{ asset('storage/' . $gig->gigImages->first()->path) }}" alt="gig thumbnail">
             </a>
         </section>
 
