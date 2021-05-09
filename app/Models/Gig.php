@@ -17,6 +17,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property mixed user
  * @property mixed id
  * @property mixed gigImages
+ * @property mixed basic_price
+ * @property mixed standard_price
+ * @property mixed premium_price
  */
 class Gig extends Model
 {

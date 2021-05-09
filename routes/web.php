@@ -3,6 +3,8 @@
 use App\Http\Controllers\Authentication\LoginController;
 use App\Http\Controllers\Authentication\LogoutController;
 use App\Http\Controllers\Authentication\RegisterController;
+use App\Http\Controllers\Gig\GigCheckoutSummaryController;
+use App\Http\Controllers\Gig\GigCheckoutTransactionController;
 use App\Http\Controllers\Gig\GigCreateController;
 use App\Http\Controllers\Gig\GigDeleteController;
 use App\Http\Controllers\Gig\GigEditController;
@@ -26,25 +28,41 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware(Authenticate::class)->group(function () {
-
-    Route::get('/profile/edit/{user}', ProfileEditController::class)->name('edit-profile');
-    Route::put('/profile/{user}', ProfileUpdateController::class)->name('update-profile');
-
-});
-
 Route::view('/', 'home')->name('home');
 Route::view('/services', 'services')->name('services');
 Route::view('/projects', 'projects')->name('projects');
 
-Route::get('/profile/{user}', ProfileViewController::class)->name('view-profile');
+Route::prefix('profile')->group(function () {
 
-Route::view('/gig/create', 'gig.create-gig')->name('create-gig');
-Route::post('/gig/create', GigCreateController::class)->name('do-create-gig');
-Route::get('/gig/edit/{gig}', GigEditController::class)->name('edit-gig');
-Route::put('/gig/{gig}', GigUpdateController::class)->name('update-gig');
-Route::delete('/gig/{gig}', GigDeleteController::class)->name('delete-gig');
-Route::get('/gig/{gig}', GigViewController::class)->name('view-gig');
+    Route::middleware(Authenticate::class)->group(function () {
+
+        Route::get('/edit/{user}', ProfileEditController::class)->name('edit-profile');
+        Route::put('/{user}', ProfileUpdateController::class)->name('update-profile');
+
+    });
+
+    Route::get('/{user}', ProfileViewController::class)->name('view-profile');
+
+});
+
+Route::prefix('gig')->group(function () {
+
+    Route::view('/create', 'gig.create-gig')->name('create-gig');
+    Route::post('/create', GigCreateController::class)->name('do-create-gig');
+    Route::get('/edit/{gig}', GigEditController::class)->name('edit-gig');
+
+    Route::middleware(Authenticate::class)->group(function () {
+
+        Route::get('/checkout/{gig}/{type}', GigCheckoutSummaryController::class)->name('checkout-summary-gig');
+        Route::post('/checkout/{gig}', GigCheckoutTransactionController::class)->name('checkout-transaction-gig');
+
+    });
+
+    Route::put('/{gig}', GigUpdateController::class)->name('update-gig');
+    Route::delete('/{gig}', GigDeleteController::class)->name('delete-gig');
+    Route::get('/{gig}', GigViewController::class)->name('view-gig');
+
+});
 
 Route::middleware(RedirectIfAuthenticated::class)->group(function () {
 

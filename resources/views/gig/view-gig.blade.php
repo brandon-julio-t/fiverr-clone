@@ -117,7 +117,9 @@
                             <span class="text-gray-700 text-lg font-medium">${{ $gig->basic_price }}</span>
                         </div>
                         <p class="text-gray-600 my-4">{{ $gig->basic_price_description }}</p>
-                        <x-button>Continue (${{ $gig->basic_price }})</x-button>
+                        <x-button href="{{ route('checkout-summary-gig', ['gig' => $gig, 'type' => 'basic']) }}">
+                            Continue (${{ $gig->basic_price }})
+                        </x-button>
                     </article>
                 </div>
 
@@ -128,7 +130,9 @@
                             <span class="text-gray-700 text-lg font-medium">${{ $gig->standard_price }}</span>
                         </div>
                         <p class="text-gray-600 my-4">{{ $gig->standard_price_description }}</p>
-                        <x-button>Continue (${{ $gig->standard_price }})</x-button>
+                        <x-button href="{{ route('checkout-summary-gig', ['gig' => $gig, 'type' => 'standard']) }}">
+                            Continue (${{ $gig->standard_price }})
+                        </x-button>
                     </article>
                 </div>
 
@@ -139,7 +143,9 @@
                             <span class="text-gray-700 text-lg font-medium">${{ $gig->premium_price }}</span>
                         </div>
                         <p class="text-gray-600 my-4">{{ $gig->premium_price_description }}</p>
-                        <x-button>Continue (${{ $gig->premium_price }})</x-button>
+                        <x-button href="{{ route('checkout-summary-gig', ['gig' => $gig, 'type' => 'premium']) }}">
+                            Continue (${{ $gig->premium_price }})
+                        </x-button>
                     </article>
                 </div>
             </div>
