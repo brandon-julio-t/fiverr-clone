@@ -30,24 +30,33 @@
                                           clip-rule="evenodd"/>
                                 </svg>
                             </div>
-                            <input id="search" name="search"
-                                   class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-green-500 focus:border-green-500 sm:text-sm"
-                                   placeholder="Search" type="search">
+                            <form action="{{ route('search') }}" class="block w-full pl-10 pr-3 py-2">
+                                <input id="search" name="title"
+                                       class="w-full border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-green-500 focus:border-green-500 sm:text-sm"
+                                       placeholder="Search" type="search">
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="hidden flex-1 justify-end lg:ml-6 lg:flex lg:space-x-8">
-                <!-- Current: "border-green-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" -->
-                <a href="{{ route('services') }}"
-                   class="{{ request()->is('services*') ? 'border-green-500 text-gray-900' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700' }} inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
-                    Services
-                </a>
-                <a href="{{ route('projects') }}"
-                   class="{{ request()->is('projects*') ? 'border-green-500 text-gray-900' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700' }} inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
-                    Projects
-                </a>
+            <div class="flex-1 justify-end lg:ml-6 lg:flex lg:space-x-8 relative">
+                <div
+                    class="dropdown border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                    <div>Categories</div>
+                    <div
+                        class="dropdown-content bg-white overflow-hidden shadow rounded-lg absolute mt-16 hidden w-96 font-bold right-0 top-0">
+                        <div class="px-4 py-5 sm:p-6">
+                            <div class="grid grid-cols-2 gap-y-4 gap-x-8">
+                                @foreach (\App\Models\GigCategory::all() as $category)
+                                    <a class="hover:underline" href="{{ route('search', ['gig_category_id' => $category->id]) }}">
+                                        {{ $category->name }}
+                                    </a>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             @guest

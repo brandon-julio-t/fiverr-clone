@@ -9,6 +9,7 @@ use App\Http\Controllers\Gig\GigCreateController;
 use App\Http\Controllers\Gig\GigDeleteController;
 use App\Http\Controllers\Gig\GigEditController;
 use App\Http\Controllers\Gig\GigReviewController;
+use App\Http\Controllers\Gig\GigSearchController;
 use App\Http\Controllers\Gig\GigUpdateController;
 use App\Http\Controllers\Gig\GigViewController;
 use App\Http\Controllers\Profile\ProfileEditController;
@@ -30,8 +31,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::view('/', 'home')->name('home');
-Route::view('/services', 'services')->name('services');
-Route::view('/projects', 'projects')->name('projects');
+Route::get('/search', GigSearchController::class)->name('search');
 
 Route::prefix('profile')->group(function () {
 

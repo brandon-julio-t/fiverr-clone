@@ -21,7 +21,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('/gigs', function () {
-    $paginated = Gig::orderBy('created_at', 'desc')->paginate(15);
+    $paginated = Gig::orderByDesc('created_at')->paginate();
 
     $data = [
         'next_page_url' => $paginated->path() . '?page=' . ($paginated->currentPage() + 1),
