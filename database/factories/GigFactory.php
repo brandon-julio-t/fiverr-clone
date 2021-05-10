@@ -25,8 +25,8 @@ class GigFactory extends Factory
     {
         return [
             'title' => $this->faker->sentence,
-            'gig_category_id' => $this->faker->randomElement(GigCategory::pluck('id')),
-            'user_id' => $this->faker->randomElement(User::pluck('id')),
+            'gig_category_id' => GigCategory::pluck('id')->random(),
+            'user_id' => User::pluck('id')->random(),
             'about' => collect($this->faker->paragraphs())->join('
 '),
             'basic_price' => $this->faker->randomDigitNotZero(),

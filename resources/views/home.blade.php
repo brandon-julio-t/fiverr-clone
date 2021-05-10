@@ -56,9 +56,39 @@
             </div>
         </section>
 
-        <section class="max-w-7xl mx-auto sm:px-6 lg:px-8 my-16">
-            <h2 class="text-4xl font-bold mb-4">All Gigs</h2>
-            <div id="gigs" class="grid grid-cols-5 gap-4"></div>
+        <section class="max-w-7xl mx-auto sm:px-6 lg:px-8 my-16 grid grid-cols-1 gap-8">
+            <section>
+                <h2 class="text-4xl font-bold mb-4">Popular Categories</h2>
+                <div class="grid grid-cols-4 gap-4">
+                    @foreach ($categories as $category)
+                        @if (collect([1, 3])->contains($loop->iteration))
+                            <a
+                                href="{{ route('search', ['gig_category_id' => $category->id]) }}"
+                                class="hover:underline bg-white overflow-hidden shadow rounded-lg row-span-2 flex items-center"
+                            >
+                                <div class="px-4 py-5 sm:p-6">
+                                    {{ $category->name }}
+                                </div>
+                            </a>
+                        @else
+                            <a
+                                href="{{ route('search', ['gig_category_id' => $category->id]) }}"
+                                class="hover:underline bg-white overflow-hidden shadow rounded-lg"
+                            >
+                                <div class="px-4 py-5 sm:p-6">
+                                    {{ $category->name }}
+                                </div>
+                            </a>
+                        @endif
+
+                    @endforeach
+                </div>
+            </section>
+
+            <section>
+                <h2 class="text-4xl font-bold mb-4">All Gigs</h2>
+                <div id="gigs" class="grid grid-cols-5 gap-4"></div>
+            </section>
         </section>
     </main>
 @endsection

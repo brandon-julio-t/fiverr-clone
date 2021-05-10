@@ -77,4 +77,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Gig::class);
     }
+
+    public function gigTransactions(): HasMany
+    {
+        return $this->hasMany(GigTransaction::class);
+    }
 }

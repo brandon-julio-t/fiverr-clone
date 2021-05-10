@@ -23,8 +23,8 @@ class GigImageFactory extends Factory
     public function definition(): array
     {
         return [
-            'gig_id' => $this->faker->randomElement(Gig::pluck('id')),
-            'path' => $this->faker->randomElement(['dummy1', 'dummy2', 'dummy3']) . '.jpg',
+            'gig_id' => Gig::pluck('id')->random(),
+            'path' => collect(['dummy1', 'dummy2', 'dummy3'])->random() . '.jpg',
         ];
     }
 }

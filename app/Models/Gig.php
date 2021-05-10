@@ -83,4 +83,9 @@ class Gig extends Model
     {
         return $this->hasMany(GigReview::class);
     }
+
+    public function gigTransactions(): HasMany
+    {
+        return $this->hasMany(GigTransaction::class);
+    }
 }

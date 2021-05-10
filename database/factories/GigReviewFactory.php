@@ -23,7 +23,7 @@ class GigReviewFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => $this->faker->randomElement(User::pluck('id')),
+            'user_id' => User::pluck('id')->random(),
             'rating' => $this->faker->numberBetween(1, 5),
             'body' => $this->faker->paragraph,
         ];
