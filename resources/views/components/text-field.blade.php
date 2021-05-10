@@ -8,6 +8,8 @@
 'leading' => '',
 'multiple' => false,
 'label' => null,
+'min' => null,
+'max' => null
 
 ])
 
@@ -52,8 +54,11 @@
             <input id="{{ $name }}" name="{{ $name }}" type="{{ $type }}" autocomplete="{{ $autocomplete }}"
                    @if ($required) required @endif
                    class="@if ($leading) pl-7 @endif appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm @error($name) pr-10 border-red-300 text-red-900 placeholder-red-300 focus:ring-red-500 focus:border-red-500 @enderror"
-                   @error(strval(\Illuminate\Support\Str::of($name)->replace(['-', '_', '[]'], ' '))) aria-invalid="true" aria-describedby="{{ $name }}-error" @enderror
-                   value="{{ old($name, $slot) }}" @if($multiple) multiple @endif>
+                   @error(strval(\Illuminate\Support\Str::of($name)->replace(['-', '_', '[]'], ' '))) aria-invalid="true"
+                   aria-describedby="{{ $name }}-error" @enderror
+                   value="{{ old($name, $slot) }}" @if($multiple) multiple @endif
+                   @if($min) min="{{ $min }}" @endif
+                   @if($max) max="{{ $max }}" @endif>
             @break
         @endswitch
 

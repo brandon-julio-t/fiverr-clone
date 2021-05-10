@@ -8,6 +8,7 @@ use App\Http\Controllers\Gig\GigCheckoutTransactionController;
 use App\Http\Controllers\Gig\GigCreateController;
 use App\Http\Controllers\Gig\GigDeleteController;
 use App\Http\Controllers\Gig\GigEditController;
+use App\Http\Controllers\Gig\GigReviewController;
 use App\Http\Controllers\Gig\GigUpdateController;
 use App\Http\Controllers\Gig\GigViewController;
 use App\Http\Controllers\Profile\ProfileEditController;
@@ -55,6 +56,7 @@ Route::prefix('gig')->group(function () {
 
         Route::get('/checkout/{gig}/{type}', GigCheckoutSummaryController::class)->name('checkout-summary-gig');
         Route::post('/checkout/{gig}', GigCheckoutTransactionController::class)->name('checkout-transaction-gig');
+        Route::post('/review/{gig}', GigReviewController::class)->name('review-gig');
 
     });
 

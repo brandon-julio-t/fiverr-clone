@@ -20,7 +20,7 @@ class GigViewController extends Controller
      */
     public function __invoke(Request $request, Gig $gig)
     {
-        $reviews = $gig->gigReviews()->paginate(5);
+        $reviews = $gig->gigReviews()->orderByDesc('created_at')->paginate(5);
         return view('gig.view-gig', compact('gig', 'reviews'));
     }
 }

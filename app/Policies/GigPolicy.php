@@ -101,6 +101,9 @@ class GigPolicy
      */
     public function review(User $user, Gig $gig): bool
     {
-        return GigTransaction::where('gig_id', $gig->id)->where('user_id', $user->id)->first() != null;
+        return GigTransaction::where([
+            'user_id' => $user->id,
+            'gig_id' => $gig->id
+        ])->first() != null;
     }
 }

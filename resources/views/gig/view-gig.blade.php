@@ -74,16 +74,16 @@
                 </div>
             </section>
 
+            @can('review', $gig)
             <section class="my-16">
-                <form action="" method="post">
+                <form action="{{ route('review-gig', $gig) }}" method="post" class="grid grid-cols-1 gap-4">
                     @csrf
-                    <x-text-field name="review" type="textarea" :required="true"></x-text-field>
-
-                    <div class="mt-4">
-                        <x-button type="submit">Submit</x-button>
-                    </div>
+                    <x-text-field name="rating" type="number" min="1" max="5" :required="true"></x-text-field>
+                    <x-text-field name="body" type="textarea" :required="true"></x-text-field>
+                    <x-button type="submit">Submit</x-button>
                 </form>
             </section>
+            @endcan
 
             <section class="mt-16">
                 <hr/>

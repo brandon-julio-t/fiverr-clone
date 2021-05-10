@@ -2,10 +2,9 @@
 
 namespace App\Http\Requests;
 
-use Auth;
 use Illuminate\Foundation\Http\FormRequest;
 
-class ProfileUpdateRequest extends FormRequest
+class GigReviewRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -14,7 +13,8 @@ class ProfileUpdateRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return Auth::id() == $this->user()->id;
+        $gig = $this->route('gig');
+        return $this->user()->can('review', $gig);
     }
 
     /**
@@ -25,8 +25,8 @@ class ProfileUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required',
-            'profile-picture' => 'file|image'
+            'rating' => 'required|integer|between:1,5',
+            'body' => 'required|string'
         ];
     }
 }
