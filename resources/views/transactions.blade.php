@@ -32,11 +32,14 @@
                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     Transaction Date
                                 </th>
+                                <th scope="col" class="relative px-6 py-3">
+                                    <span class="sr-only">Actions</span>
+                                </th>
                             </tr>
                             </thead>
                             <tbody>
                             @foreach ($transactions as $transaction)
-                                <tr class="@if ($loop->odd) bg-white @else bg-gray-50 @endif">
+                                <tr class="@if ($loop->odd) bg-white @else bg-gray-50 @endif hover:bg-gray-100">
                                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 truncate">
                                         {{ Str::limit($transaction->gig->user->name, 50) }}
                                     </td>
@@ -51,6 +54,14 @@
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                         {{ $transaction->created_at->toDayDateTimeString() }}
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                        <a
+                                            href="{{ route('view-gig', $transaction->gig) }}"
+                                            class="text-green-600 hover:text-green-900"
+                                        >
+                                            View
+                                        </a>
                                     </td>
                                 </tr>
                             @endforeach
