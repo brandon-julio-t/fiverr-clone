@@ -7,20 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-/**
- * @method static pluck(string $string)
- * @method static paginate(int $int)
- * @method static simplePaginate(int $int)
- * @method static find(array|string|null $id)
- * @method static create(array $data)
- * @method static orderBy(string $string, string $string1)
- * @property mixed user
- * @property mixed id
- * @property mixed gigImages
- * @property mixed basic_price
- * @property mixed standard_price
- * @property mixed premium_price
- */
 class Gig extends Model
 {
     use HasFactory;

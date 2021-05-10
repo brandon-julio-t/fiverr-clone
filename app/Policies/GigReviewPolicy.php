@@ -2,35 +2,35 @@
 
 namespace App\Policies;
 
-use App\Models\Gig;
-use App\Models\GigTransaction;
+use App\Models\GigReview;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class GigPolicy
+class GigReviewPolicy
 {
     use HandlesAuthorization;
 
     /**
      * Determine whether the user can view any models.
      *
+     * @param User $user
      * @return bool
      */
-    public function viewAny(): bool
+    public function viewAny(User $user): bool
     {
-        return true;
+        return $user != null;
     }
 
     /**
      * Determine whether the user can view the model.
      *
      * @param User $user
-     * @param Gig $gig
+     * @param GigReview $gigReview
      * @return bool
      */
-    public function view(User $user, Gig $gig): bool
+    public function view(User $user, GigReview $gigReview): bool
     {
-        return $gig->user->id == $user->id;
+        return $user != null && $gigReview != null;
     }
 
     /**
@@ -48,59 +48,47 @@ class GigPolicy
      * Determine whether the user can update the model.
      *
      * @param User $user
-     * @param Gig $gig
+     * @param GigReview $gigReview
      * @return bool
      */
-    public function update(User $user, Gig $gig): bool
+    public function update(User $user, GigReview $gigReview): bool
     {
-        return $gig->user->id == $user->id;
+        return $user->id == $gigReview->user->id;
     }
 
     /**
      * Determine whether the user can delete the model.
      *
      * @param User $user
-     * @param Gig $gig
+     * @param GigReview $gigReview
      * @return bool
      */
-    public function delete(User $user, Gig $gig): bool
+    public function delete(User $user, GigReview $gigReview): bool
     {
-        return $gig->user->id == $user->id;
+        return $user->id == $gigReview->user->id;
     }
 
     /**
      * Determine whether the user can restore the model.
      *
      * @param User $user
-     * @param Gig $gig
+     * @param GigReview $gigReview
      * @return bool
      */
-    public function restore(User $user, Gig $gig): bool
+    public function restore(User $user, GigReview $gigReview): bool
     {
-        return $gig->user->id == $user->id;
+        return $user->id == $gigReview->user->id;
     }
 
     /**
      * Determine whether the user can permanently delete the model.
      *
      * @param User $user
-     * @param Gig $gig
+     * @param GigReview $gigReview
      * @return bool
      */
-    public function forceDelete(User $user, Gig $gig): bool
+    public function forceDelete(User $user, GigReview $gigReview): bool
     {
-        return $gig->user->id == $user->id;
-    }
-
-    /**
-     * Determine whether the user can add review to gig.
-     *
-     * @param User $user
-     * @param Gig $gig
-     * @return bool
-     */
-    public function review(User $user, Gig $gig): bool
-    {
-        return GigTransaction::where('gig_id', $gig->id)->where('user_id', $user->id)->first() != null;
+        return $user->id == $gigReview->user->id;
     }
 }

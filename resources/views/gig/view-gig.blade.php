@@ -74,6 +74,17 @@
                 </div>
             </section>
 
+            <section class="my-16">
+                <form action="" method="post">
+                    @csrf
+                    <x-text-field name="review" type="textarea" :required="true"></x-text-field>
+
+                    <div class="mt-4">
+                        <x-button type="submit">Submit</x-button>
+                    </div>
+                </form>
+            </section>
+
             <section class="mt-16">
                 <hr/>
 
