@@ -7,7 +7,7 @@
         <h2 class="text-2xl font-bold mb-4">Gig Checkout</h2>
 
         <div class="grid grid-cols-12 gap-4">
-            <section class="bg-white overflow-hidden shadow rounded-lg col-span-8">
+            <section class="bg-white overflow-hidden shadow rounded-lg col-span-8 hover:shadow-md transition duration-250">
                 <div class="px-4 py-5 sm:p-6 grid grid-cols-12 gap-4">
                     <div class="col-span-8 grid grid-cols-1 gap-4">
                         <div>
@@ -36,7 +36,7 @@
             </section>
 
             <section class="col-span-4">
-                <div class="bg-white overflow-hidden shadow rounded-lg sticky top-12">
+                <div class="bg-white overflow-hidden shadow rounded-lg sticky top-12 hover:shadow-md transition duration-250">
                     <div class="px-4 py-5 sm:p-6 w-96">
                         <h2 class="text-lg font-bold capitalize">{{ $type }}</h2>
                         <p class="text-lg font-medium mb-4">

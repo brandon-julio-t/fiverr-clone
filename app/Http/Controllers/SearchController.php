@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Http\Controllers\Gig;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Models\Gig;
 use App\Models\GigCategory;
 use Illuminate\Contracts\Foundation\Application;
@@ -11,7 +10,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
-class GigSearchController extends Controller
+class SearchController extends Controller
 {
     /**
      * Handle the incoming request.

@@ -5,7 +5,7 @@
 ])
 
 <div class="group">
-    <div class="bg-white overflow-hidden shadow rounded-lg divide-y divide-gray-200">
+    <div class="bg-white overflow-hidden shadow hover:shadow-md transition duration-250 rounded-lg divide-y divide-gray-200">
         <section>
             <a href="{{ route('view-gig', $gig) }}">
                 <img class="cursor-pointer" src="{{ asset('storage/' . $gig->gigImages->first()->path) }}" alt="gig thumbnail">

@@ -9,13 +9,14 @@ use App\Http\Controllers\Gig\GigCreateController;
 use App\Http\Controllers\Gig\GigDeleteController;
 use App\Http\Controllers\Gig\GigEditController;
 use App\Http\Controllers\Gig\GigReviewController;
-use App\Http\Controllers\Gig\GigSearchController;
 use App\Http\Controllers\Gig\GigUpdateController;
 use App\Http\Controllers\Gig\GigViewController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Profile\ProfileEditController;
 use App\Http\Controllers\Profile\ProfileUpdateController;
 use App\Http\Controllers\Profile\ProfileViewController;
+use App\Http\Controllers\SearchController;
+use App\Http\Controllers\TransactionsController;
 use App\Http\Middleware\Authenticate;
 use App\Http\Middleware\RedirectIfAuthenticated;
 use Illuminate\Support\Facades\Route;
@@ -32,7 +33,25 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::any('/', HomeController::class)->name('home');
-Route::get('/search', GigSearchController::class)->name('search');
+Route::get('/search', SearchController::class)->name('search');
+
+Route::middleware(Authenticate::class)->group(function () {
+
+    Route::get('/transactions', TransactionsController::class)->name('transactions');
+
+});
+
+Route::middleware(RedirectIfAuthenticated::class)->group(function () {
+
+    Route::view('/login', 'authentication.login')->name('login');
+    Route::post('/login', LoginController::class)->name('do-login');
+
+    Route::view('/register', 'authentication.register')->name('register');
+    Route::post('/register', RegisterController::class)->name('do-register');
+
+});
+
+Route::any('/logout', LogoutController::class)->name('logout');
 
 Route::prefix('profile')->group(function () {
 
@@ -66,15 +85,3 @@ Route::prefix('gig')->group(function () {
     Route::get('/{gig}', GigViewController::class)->name('view-gig');
 
 });
-
-Route::middleware(RedirectIfAuthenticated::class)->group(function () {
-
-    Route::view('/login', 'authentication.login')->name('login');
-    Route::post('/login', LoginController::class)->name('do-login');
-
-    Route::view('/register', 'authentication.register')->name('register');
-    Route::post('/register', RegisterController::class)->name('do-register');
-
-});
-
-Route::any('/logout', LogoutController::class)->name('logout');

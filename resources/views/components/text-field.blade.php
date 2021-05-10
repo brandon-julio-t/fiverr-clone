@@ -16,7 +16,7 @@
 <div>
     <label for="{{ $name }}"
            class="block text-sm font-medium text-gray-700">
-        {{ \Illuminate\Support\Str::of($label ?? $name)->replace(['-', '_', '[]'], ' ')->title() }}
+        {{ Str::of($label ?? $name)->replace(['-', '_', '[]'], ' ')->title() }}
         @if (!$required) <span class="font-light">(Optional)</span> @endif
     </label>
     <div class="mt-1 relative rounded-md shadow-sm">
@@ -26,7 +26,7 @@
                 <textarea id="{{ $name }}" name="{{ $name }}" rows="7" autocomplete="{{ $autocomplete }}"
                           @if ($required) required @endif
                           class="block shadow-sm w-full focus:ring-green-500 focus:border-green-500 sm:text-sm border-gray-300 rounded-md @error($name) pr-10 border-red-300 text-red-900 placeholder-red-300 focus:ring-red-500 focus:border-red-500 @enderror"
-                          @error(strval(\Illuminate\Support\Str::of($name)->replace(['-', '_', '[]'], ' '))) aria-invalid="true" aria-describedby="{{ $name }}-error" @enderror
+                          @error(strval(Str::of($name)->replace(['-', '_', '[]'], ' '))) aria-invalid="true" aria-describedby="{{ $name }}-error" @enderror
                 >{!! old($name, $slot) !!}</textarea>
             </div>
             @break
@@ -37,7 +37,7 @@
                 <select id="{{ $name }}" name="{{ $name }}"
                         @if ($required) required @endif
                         class="w-full focus:ring-green-500 focus:border-green-500 h-full py-0 pl-3 pr-7 border-transparent bg-transparent text-gray-500 sm:text-sm rounded-md @error($name) pr-10 border-red-300 text-red-900 placeholder-red-300 focus:ring-red-500 focus:border-red-500 @enderror"
-                        @error(strval(\Illuminate\Support\Str::of($name)->replace(['-', '_', '[]'], ' '))) aria-invalid="true" aria-describedby="{{ $name }}-error" @enderror>
+                        @error(strval(Str::of($name)->replace(['-', '_', '[]'], ' '))) aria-invalid="true" aria-describedby="{{ $name }}-error" @enderror>
                     {{ $slot }}
                 </select>
             </div>
@@ -54,7 +54,7 @@
             <input id="{{ $name }}" name="{{ $name }}" type="{{ $type }}" autocomplete="{{ $autocomplete }}"
                    @if ($required) required @endif
                    class="@if ($leading) pl-7 @endif appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm @error($name) pr-10 border-red-300 text-red-900 placeholder-red-300 focus:ring-red-500 focus:border-red-500 @enderror"
-                   @error(strval(\Illuminate\Support\Str::of($name)->replace(['-', '_', '[]'], ' '))) aria-invalid="true"
+                   @error(strval(Str::of($name)->replace(['-', '_', '[]'], ' '))) aria-invalid="true"
                    aria-describedby="{{ $name }}-error" @enderror
                    value="{{ old($name, $slot) }}" @if($multiple) multiple @endif
                    @if($min) min="{{ $min }}" @endif
@@ -62,7 +62,7 @@
             @break
         @endswitch
 
-        @error(strval(\Illuminate\Support\Str::of($name)->replace(['-', '_', '[]'], ' ')))
+        @error(strval(Str::of($name)->replace(['-', '_', '[]'], ' ')))
         <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
             <!-- Heroicon name: solid/exclamation-circle -->
             <svg class="h-5 w-5 text-red-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
@@ -75,7 +75,7 @@
         @enderror
     </div>
 
-    @error(strval(\Illuminate\Support\Str::of($name)->replace(['-', '_', '[]'], ' ')))
+    @error(strval(Str::of($name)->replace(['-', '_', '[]'], ' ')))
     <p class="mt-2 text-sm text-red-600" id="{{ $name }}-error">{{ $message }}</p>
     @enderror
 </div>

@@ -27,7 +27,7 @@
     <main>
         <section id="hero" class="p-72 bg-center" style="background-image: url('https://picsum.photos/1920')">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <h2 class="text-7xl font-bold filter drop-shadow-md text-white">
+                <h2 class="text-7xl font-bold filter drop-shadow-md text-white leading-tight">
                     Find the perfect <span class="italic">freelance</span>
                     <br/>
                     services for your business
@@ -64,7 +64,7 @@
                         @if (collect([1, 3])->contains($loop->iteration))
                             <a
                                 href="{{ route('search', ['gig_category_id' => $category->id]) }}"
-                                class="hover:underline bg-white overflow-hidden shadow rounded-lg row-span-2 flex items-center"
+                                class="transition duration-250 hover:shadow-md active:inner-shadow hover:underline bg-white overflow-hidden shadow rounded-lg row-span-2 flex items-center"
                             >
                                 <div class="px-4 py-5 sm:p-6">
                                     {{ $category->name }}
@@ -73,7 +73,7 @@
                         @else
                             <a
                                 href="{{ route('search', ['gig_category_id' => $category->id]) }}"
-                                class="hover:underline bg-white overflow-hidden shadow rounded-lg"
+                                class="transition duration-250 hover:shadow-md active:inner-shadow hover:underline bg-white overflow-hidden shadow rounded-lg"
                             >
                                 <div class="px-4 py-5 sm:p-6">
                                     {{ $category->name }}

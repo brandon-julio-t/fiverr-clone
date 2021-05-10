@@ -5,7 +5,7 @@
 @section('content')
     <main class="max-w-7xl mx-auto my-12 sm:px-6 lg:px-8 grid grid-cols-8 gap-8">
         <section class="col-span-3">
-            <div class="bg-white overflow-hidden shadow rounded-lg mx-auto sticky top-12">
+            <div class="bg-white overflow-hidden shadow rounded-lg mx-auto sticky top-12 hover:shadow-md transition duration-250">
                 <div class="px-4 py-5 sm:p-6 grid grid-cols-1 gap-4 justify-center items-center text-center">
                     <x-profile-picture :user="$user" size="big"></x-profile-picture>
 

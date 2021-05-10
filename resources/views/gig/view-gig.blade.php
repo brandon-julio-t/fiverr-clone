@@ -65,7 +65,7 @@
                 </div>
             </section>
 
-            <section class="mt-4 bg-white overflow-hidden shadow rounded-lg">
+            <section class="mt-4 bg-white overflow-hidden shadow rounded-lg hover:shadow-md transition duration-250">
                 <div class="px-4 py-5 sm:p-6">
                     <p class="text-gray-500">Member since</p>
                     <p class="text-gray-500 font-bold">{{ $gig->user->created_at->toFormattedDateString() }}</p>
@@ -121,7 +121,7 @@
 
         <section class="col-span-3">
             <div class="grid grid-cols-1 gap-4 sticky top-12">
-                <div class="bg-white overflow-hidden shadow rounded-lg">
+                <div class="bg-white overflow-hidden shadow rounded-lg hover:shadow-md transition duration-250">
                     <article class="px-4 py-5 sm:p-6">
                         <div class="flex justify-between items-center">
                             <span class="text-gray-700 font-bold">Starter Package</span>
@@ -134,7 +134,7 @@
                     </article>
                 </div>
 
-                <div class="bg-white overflow-hidden shadow rounded-lg">
+                <div class="bg-white overflow-hidden shadow rounded-lg hover:shadow-md transition duration-250">
                     <article class="px-4 py-5 sm:p-6">
                         <div class="flex justify-between items-center">
                             <span class="text-gray-700 font-bold">Best Package</span>
@@ -147,7 +147,7 @@
                     </article>
                 </div>
 
-                <div class="bg-white overflow-hidden shadow rounded-lg">
+                <div class="bg-white overflow-hidden shadow rounded-lg hover:shadow-md transition duration-250">
                     <article class="px-4 py-5 sm:p-6">
                         <div class="flex justify-between items-center">
                             <span class="text-gray-700 font-bold">Premium Package</span>
