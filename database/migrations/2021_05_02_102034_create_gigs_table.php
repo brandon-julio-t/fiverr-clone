@@ -16,8 +16,8 @@ class CreateGigsTable extends Migration
         Schema::create('gigs', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->foreignId('gig_category_id')->constrained();
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('gig_category_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->text('about');
             $table->bigInteger('basic_price');
             $table->bigInteger('standard_price');

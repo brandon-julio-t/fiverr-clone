@@ -13,7 +13,7 @@
         <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
             <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
                 <form class="space-y-6"
-                      action="{{ route('do-login') }}" method="POST">
+                      action="{{ route('do-login') }}" method="POST" novalidate>
                     @csrf
 
                     <x-text-field name="email" type="email" autocomplete="email" :required="true"></x-text-field>
@@ -28,12 +28,6 @@
                             <label for="remember_me" class="ml-2 block text-sm text-gray-900">
                                 Remember me
                             </label>
-                        </div>
-
-                        <div class="text-sm">
-                            <a href="#" class="font-medium text-green-600 hover:text-green-500">
-                                Forgot your password?
-                            </a>
                         </div>
                     </div>
 

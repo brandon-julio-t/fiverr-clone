@@ -15,8 +15,8 @@ class CreateGigTransactionsTable extends Migration
     {
         Schema::create('gig_transactions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained();
-            $table->foreignId('gig_id')->constrained();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('gig_id')->constrained()->cascadeOnDelete();
             $table->bigInteger('price');
             $table->string('type');
             $table->timestamps();

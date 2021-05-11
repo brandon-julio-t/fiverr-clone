@@ -73,8 +73,14 @@ Route::prefix('gig')->group(function () {
         Route::view('/create', 'gig.create-gig')->name('create-gig');
         Route::post('/create', GigCreateController::class)->name('do-create-gig');
         Route::get('/edit/{gig}', GigEditController::class)->name('edit-gig');
-        Route::get('/checkout/{gig}/{type}', GigCheckoutSummaryController::class)->name('checkout-summary-gig');
-        Route::post('/checkout/{gig}', GigCheckoutTransactionController::class)->name('checkout-transaction-gig');
+
+        Route::middleware('can:purchase,gig')->group(function () {
+
+            Route::get('/checkout/{gig}/{type}', GigCheckoutSummaryController::class)->name('checkout-summary-gig');
+            Route::post('/checkout/{gig}', GigCheckoutTransactionController::class)->name('checkout-transaction-gig');
+
+        });
+
         Route::post('/review/{gig}', GigReviewController::class)->name('review-gig');
         Route::put('/{gig}', GigUpdateController::class)->name('update-gig');
         Route::delete('/{gig}', GigDeleteController::class)->name('delete-gig');

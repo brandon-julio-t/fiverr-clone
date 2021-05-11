@@ -91,7 +91,7 @@
                                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem"
                                 tabindex="-1"
                             >
-                                Your Profile
+                                Profile
                             </a>
                             <a
                                 href="{{ route('transactions') }}"
@@ -100,6 +100,16 @@
                             >
                                 Transactions
                             </a>
+                            <a
+                                href="{{ route('transactions') }}"
+                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem"
+                                tabindex="-1"
+                            >
+                                Loved Gigs
+                            </a>
+
+                            <hr/>
+
                             <a
                                 href="{{ route('logout') }}"
                                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem"

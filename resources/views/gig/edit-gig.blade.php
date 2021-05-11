@@ -7,7 +7,8 @@
         @include('partials.errors')
 
         <div class="grid grid-cols-1 gap-4">
-            <form class="grid grid-cols-1 gap-4" action="{{ route('update-gig', $gig) }}" method="post" enctype="multipart/form-data">
+            <form class="grid grid-cols-1 gap-4" action="{{ route('update-gig', $gig) }}" method="post"
+                  enctype="multipart/form-data" novalidate>
                 @csrf
                 @method('put')
                 <input type="hidden" name="user_id" value="{{ auth()->id() }}">

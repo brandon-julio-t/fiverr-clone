@@ -16,7 +16,7 @@ class CreateGigReviewsTable extends Migration
         Schema::create('gig_reviews', function (Blueprint $table) {
             $table->id();
             $table->foreignId('gig_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->integer('rating');
             $table->text('body');
             $table->timestamps();

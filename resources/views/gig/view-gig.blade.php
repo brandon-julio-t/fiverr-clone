@@ -29,17 +29,12 @@
                 <span>({{ $gig->gigReviews()->count() }})</span>
             </p>
 
-            @can('update', $gig)
-                <div class="my-4">
-                    <x-button href="{{ route('edit-gig', $gig) }}">Edit Gig</x-button>
-                </div>
-            @endcan
-
-            <img src="{{ asset('storage/' . $gig->gigImages->first()->path) }}" alt="thumbnail">
+            <img class="mb-2" src="{{ asset('storage/' . $gig->gigImages->first()->path) }}" alt="thumbnail">
 
             <div class="flex overflow-auto">
                 @foreach ($gig->gigImages->whereNotIn('id', $gig->gigImages->first()->id) as $image)
-                    <img class="w-32 object-cover bgce" src="{{ asset('storage/' . $image->path) }}" alt="gig image">
+                    <img class="w-32 object-cover @if(!$loop->last) mr-2 @endif"
+                         src="{{ asset('storage/' . $image->path) }}" alt="gig image">
                 @endforeach
             </div>
 
@@ -121,6 +116,12 @@
 
         <section class="col-span-3">
             <div class="grid grid-cols-1 gap-4 sticky top-12">
+                @can('update', $gig)
+                    <div class="my-4">
+                        <x-button href="{{ route('edit-gig', $gig) }}">Edit Gig</x-button>
+                    </div>
+                @endcan
+
                 <div class="bg-white overflow-hidden shadow rounded-lg hover:shadow-md transition duration-250">
                     <article class="px-4 py-5 sm:p-6">
                         <div class="flex justify-between items-center">
@@ -128,9 +129,11 @@
                             <span class="text-gray-700 text-lg font-medium">${{ $gig->basic_price }}</span>
                         </div>
                         <p class="text-gray-600 my-4">{{ $gig->basic_price_description }}</p>
-                        <x-button href="{{ route('checkout-summary-gig', ['gig' => $gig, 'type' => 'basic']) }}">
-                            Continue (${{ $gig->basic_price }})
-                        </x-button>
+                        @can('purchase', $gig)
+                            <x-button href="{{ route('checkout-summary-gig', ['gig' => $gig, 'type' => 'basic']) }}">
+                                Continue (${{ $gig->basic_price }})
+                            </x-button>
+                        @endcan
                     </article>
                 </div>
 
@@ -141,9 +144,11 @@
                             <span class="text-gray-700 text-lg font-medium">${{ $gig->standard_price }}</span>
                         </div>
                         <p class="text-gray-600 my-4">{{ $gig->standard_price_description }}</p>
-                        <x-button href="{{ route('checkout-summary-gig', ['gig' => $gig, 'type' => 'standard']) }}">
-                            Continue (${{ $gig->standard_price }})
-                        </x-button>
+                        @can('purchase', $gig)
+                            <x-button href="{{ route('checkout-summary-gig', ['gig' => $gig, 'type' => 'standard']) }}">
+                                Continue (${{ $gig->standard_price }})
+                            </x-button>
+                        @endcan
                     </article>
                 </div>
 
@@ -154,9 +159,11 @@
                             <span class="text-gray-700 text-lg font-medium">${{ $gig->premium_price }}</span>
                         </div>
                         <p class="text-gray-600 my-4">{{ $gig->premium_price_description }}</p>
-                        <x-button href="{{ route('checkout-summary-gig', ['gig' => $gig, 'type' => 'premium']) }}">
-                            Continue (${{ $gig->premium_price }})
-                        </x-button>
+                        @can('purchase', $gig)
+                            <x-button href="{{ route('checkout-summary-gig', ['gig' => $gig, 'type' => 'premium']) }}">
+                                Continue (${{ $gig->premium_price }})
+                            </x-button>
+                        @endcan
                     </article>
                 </div>
             </div>

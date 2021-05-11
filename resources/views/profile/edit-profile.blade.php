@@ -5,7 +5,7 @@
 @section('content')
     <main class="max-w-7xl mx-auto my-12 sm:px-6 lg:px-8">
         <form class="my-16 max-w-xl mx-auto grid grid-cols-1 gap-4" action="{{ route('update-profile', $user) }}"
-              method="post" enctype="multipart/form-data">
+              method="post" enctype="multipart/form-data" novalidate>
             @csrf
             @method('put')
 

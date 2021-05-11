@@ -1,9 +1,10 @@
 <?php
 
-use App\Models\Gig;
+use App\Http\Controllers\Gig\GigInfiniteScrollController;
+use App\Http\Controllers\Gig\GigLoveController;
+use App\Http\Controllers\Gig\GigUnloveController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use Illuminate\View\ComponentAttributeBag;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,19 +21,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/gigs', function () {
-    $paginated = Gig::orderByDesc('created_at')->paginate();
+Route::get('/gigs', GigInfiniteScrollController::class)->name('infinite-scroll-gigs');
 
-    $data = [
-        'next_page_url' => $paginated->path() . '?page=' . ($paginated->currentPage() + 1),
-    ];
+Route::prefix('love')->group(function () {
 
-    $data['gigs'] = collect($paginated->items())->map(function ($gig) {
-        return view('components.gig-card', [
-            'gig' => $gig,
-            'attributes' => new ComponentAttributeBag,
-        ])->render();
-    });
+    Route::post('/{user}/{gig}', GigLoveController::class)->name('love-gig');
+    Route::delete('/{user}/{gig}', GigUnloveController::class)->name('unlove-gig');
 
-    return $data;
-})->name('infinite-scroll-gigs');
+});

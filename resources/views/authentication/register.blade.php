@@ -13,7 +13,7 @@
         <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
             <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
                 <form class="space-y-6"
-                      action="{{ route('do-register') }}" method="POST">
+                      action="{{ route('do-register') }}" method="POST" novalidate>
                     @csrf
 
                     <x-text-field name="name" type="text" autocomplete="name" :required="true"></x-text-field>

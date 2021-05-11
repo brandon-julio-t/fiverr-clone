@@ -106,4 +106,16 @@ class GigPolicy
             'gig_id' => $gig->id
         ])->first() != null;
     }
+
+    /**
+     * Determine whether the user can purchase the gig.
+     *
+     * @param User $user
+     * @param Gig $gig
+     * @return bool
+     */
+    public function purchase(User $user, Gig $gig): bool
+    {
+        return $user->id != $gig->user->id;
+    }
 }
