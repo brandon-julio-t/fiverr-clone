@@ -27,12 +27,18 @@
                 </span>
 
                 <span>({{ $gig->gigReviews()->count() }})</span>
+
+                <span class="mx-2">|</span>
+
+                <x-gig-heart :gig="$gig"></x-gig-heart>
             </p>
 
             <img class="mb-2" src="{{ asset('storage/' . $gig->gigImages->first()->path) }}" alt="thumbnail">
 
             <div class="flex overflow-auto">
                 @foreach ($gig->gigImages->whereNotIn('id', $gig->gigImages->first()->id) as $image)
+                    <img class="w-32 object-cover @if(!$loop->last) mr-2 @endif"
+                         src="{{ asset('storage/' . $image->path) }}" alt="gig image">
                     <img class="w-32 object-cover @if(!$loop->last) mr-2 @endif"
                          src="{{ asset('storage/' . $image->path) }}" alt="gig image">
                 @endforeach
@@ -70,14 +76,15 @@
             </section>
 
             @can('review', $gig)
-            <section class="my-16">
-                <form action="{{ route('review-gig', $gig) }}" method="post" class="grid grid-cols-1 gap-4">
-                    @csrf
-                    <x-text-field name="rating" type="number" min="1" max="5" :required="true"></x-text-field>
-                    <x-text-field name="body" type="textarea" :required="true"></x-text-field>
-                    <x-button type="submit">Submit</x-button>
-                </form>
-            </section>
+                <section class="my-16">
+                    <form action="{{ route('review-gig', $gig) }}" method="post" class="grid grid-cols-1 gap-4"
+                          novalidate>
+                        @csrf
+                        <x-text-field name="rating" type="number" min="1" max="5" :required="true"></x-text-field>
+                        <x-text-field name="body" type="textarea" :required="true"></x-text-field>
+                        <x-button type="submit">Submit</x-button>
+                    </form>
+                </section>
             @endcan
 
             <section class="mt-16">

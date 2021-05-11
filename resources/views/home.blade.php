@@ -7,11 +7,11 @@
         let nextPage = '{{ route('infinite-scroll-gigs') }}';
         let gigs = [];
 
-        window.onscroll = () => {
+        window.onscroll = _.debounce(() => {
             if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
                 fetchNextGigs();
             }
-        };
+        }, 250);
 
         async function fetchNextGigs() {
             if (nextPage) {
@@ -28,7 +28,7 @@
         }
 
         function updateLoadingIndicator(isLoading) {
-            document.getElementById('loading-indicator').style.display = isLoading ? 'block' : 'hidden';
+            document.getElementById('loading-indicator').style.display = isLoading ? 'block' : 'none';
         }
     </script>
 
@@ -96,12 +96,15 @@
             <section class="grid grid-cols-1 gap-4">
                 <h2 class="text-4xl font-bold">All Gigs</h2>
                 <div id="gigs" class="grid grid-cols-5 gap-4"></div>
-                <svg id="loading-indicator" class="hidden animate-spin -ml-1 mr-3 mx-auto h-8 w-full text-black"
-                     xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                    <path class="opacity-75" fill="currentColor"
-                          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                </svg>
+                <div class="flex justify-center">
+                    <svg id="loading-indicator" class="hidden animate-spin -ml-1 mr-3 mx-auto h-8 w-auto text-black"
+                         xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
+                                stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor"
+                              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                </div>
             </section>
         </section>
     </main>
