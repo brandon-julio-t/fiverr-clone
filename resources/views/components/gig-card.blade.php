@@ -67,6 +67,8 @@
                         @endif
                     }
                 </script>
+            @else
+                <div>{{-- empty div for flex justify --}}</div>
             @endauth
 
             <p class="uppercase text-gray-600 cursor-pointer">

@@ -8,6 +8,7 @@ use App\Http\Controllers\Gig\GigCheckoutTransactionController;
 use App\Http\Controllers\Gig\GigCreateController;
 use App\Http\Controllers\Gig\GigDeleteController;
 use App\Http\Controllers\Gig\GigEditController;
+use App\Http\Controllers\Gig\GigLovedController;
 use App\Http\Controllers\Gig\GigReviewController;
 use App\Http\Controllers\Gig\GigUpdateController;
 use App\Http\Controllers\Gig\GigViewController;
@@ -73,6 +74,7 @@ Route::prefix('gig')->group(function () {
         Route::view('/create', 'gig.create-gig')->name('create-gig');
         Route::post('/create', GigCreateController::class)->name('do-create-gig');
         Route::get('/edit/{gig}', GigEditController::class)->name('edit-gig');
+        Route::get('/loved', GigLovedController::class)->name('loved-gig');
 
         Route::middleware('can:purchase,gig')->group(function () {
 
