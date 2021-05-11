@@ -14,7 +14,7 @@
                 {{ $user->email }}
             </x-text-field>
             <x-text-field name="about" type="text" autocomplete="name">{{ $user->about }}</x-text-field>
-            <x-text-field name="profile-picture" type="file"></x-text-field>
+            <x-text-field name="profile_picture" type="file"></x-text-field>
             <x-text-field name="description" type="textarea">{{ $user->description }}</x-text-field>
 
             <section class="grid gap-4">
