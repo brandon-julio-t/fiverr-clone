@@ -21,12 +21,12 @@ class ProfileUpdateController extends Controller
     {
         $data = $request->all();
 
-        if ($request->hasFile('profile-picture')) {
+        if ($request->hasFile('profile_picture')) {
             if (Storage::disk('public')->exists($user->profile_picture)) {
                 Storage::disk('public')->delete($user->profile_picture);
             }
 
-            $data['profile_picture'] = $request->file('profile-picture')->store('profile-pictures', 'public');
+            $data['profile_picture'] = $request->file('profile_picture')->store('profile-pictures', 'public');
         }
 
         $user->update($data);

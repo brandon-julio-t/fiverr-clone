@@ -43,6 +43,6 @@ class GigUpdateController extends Controller
 
         });
 
-        return redirect()->route('view-gig', $gig);
+        return redirect()->route('view-gig', $gig)->with('announcement-success', 'Gig updated');
     }
 }

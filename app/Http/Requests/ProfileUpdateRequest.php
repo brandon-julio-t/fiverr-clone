@@ -26,7 +26,7 @@ class ProfileUpdateRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'profile-picture' => 'file|image'
+            'profile_picture' => 'file|image'
         ];
     }
 }
