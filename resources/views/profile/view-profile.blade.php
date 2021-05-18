@@ -61,7 +61,7 @@
                     {{ $user->name }}'s Gigs
                 </h2>
 
-                @auth
+                @if ($user->id == auth()->id())
                     <div class="col-span-3">
                         <x-button href="{{ route('create-gig') }}">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -70,7 +70,7 @@
                             Create Gig
                         </x-button>
                     </div>
-                @endauth
+                @endif
             </div>
             <div class="grid grid-cols-3 gap-4 mt-4">
                 @foreach ($user->gigs()->orderBy('created_at', 'desc')->get() as $gig)

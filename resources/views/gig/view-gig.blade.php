@@ -80,7 +80,7 @@
                     <form action="{{ route('review-gig', $gig) }}" method="post" class="grid grid-cols-1 gap-4"
                           novalidate>
                         @csrf
-                        <x-text-field name="rating" type="number" min="1" max="5" :required="true"></x-text-field>
+                        <x-text-field name="rating" label="rating (1 to 5)" type="number" min="1" max="5" :required="true"></x-text-field>
                         <x-text-field name="body" type="textarea" :required="true"></x-text-field>
                         <x-button type="submit">Submit</x-button>
                     </form>

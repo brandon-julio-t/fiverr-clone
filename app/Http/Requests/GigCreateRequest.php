@@ -38,4 +38,19 @@ class GigCreateRequest extends FormRequest
             'images.*' => 'required|file|image',
         ];
     }
+
+    /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array
+     */
+    public function messages(): array
+    {
+        return [
+            'basic_price.lt' => 'Basic price must be less than standard and premium',
+            'standard_price.lt' => 'Standard price must be greater than basic and less than premium',
+            'standard_price.gt' => 'Standard price must be greater than basic and less than premium',
+            'premium_price.gt' => 'Premium price must be greater than basic and standard price ',
+        ];
+    }
 }
