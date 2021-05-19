@@ -26,7 +26,7 @@ class LoginController extends Controller
             return redirect()->route('home');
         }
 
-        session()->flash('announcement-error', 'Invalid Credentials');
+        session()->flash('announcement-error', 'Invalid Credential');
         return back();
     }
 }
