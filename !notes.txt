@@ -1,0 +1,46 @@
++----------------+
+| Gig Categories |
++----------------+
+- Graphics & Design
+- Digital Marketing
+- Writing & Translation
+- Video & Animation
+- Music & Animation
+- Music & Audio
+- Programming & Tech
+- Data
+- Business
+- Lifestyle
+
++--------+
+| Routes |
++--------+
+
++-----------------------------------+---------------------------+---------------------------------------------------+
+| Method                            | URI                       | Description                                       |
++-----------------------------------+---------------------------+---------------------------------------------------+
+| GET|POST|PUT|PATCH|DELETE|OPTIONS | /                         | Home page                                         |
+| GET                               | api/gigs                  | Infinite scroll gigs                              |
+| POST                              | api/love/{user}/{gig}     | Save gig to user's loved list                     |
+| DELETE                            | api/love/{user}/{gig}     | Remove gig from user's loved list                 |
+| POST                              | gig/checkout/{gig}        | Save the gig purchase                             |
+| GET                               | gig/checkout/{gig}/{type} | Show gig purchase summary                         |
+| GET                               | gig/create                | Show create gig form                              |
+| POST                              | gig/create                | Create gig based on the submitted form            |
+| GET                               | gig/edit/{gig}            | Show edit gig form                                |
+| GET                               | gig/loved                 | Show loved gigs list                              |
+| POST                              | gig/review/{gig}          | Add review to the gig                             |
+| PUT                               | gig/{gig}                 | Update gig based on the submitted form            |
+| DELETE                            | gig/{gig}                 | Delete gig                                        |
+| GET                               | gig/{gig}                 | View gig detail                                   |
+| GET                               | login                     | Show login form                                   |
+| POST                              | login                     | Authenticate the user                             |
+| GET|POST|PUT|PATCH|DELETE|OPTIONS | logout                    | Log the user out                                  |
+| GET                               | profile/edit/{user}       | Show edit profile form                            |
+| PUT                               | profile/{user}            | Update user's profile based on the submitted form |
+| GET                               | profile/{user}            | Show user's profile detail                        |
+| GET                               | register                  | Show register form                                |
+| POST                              | register                  | Create user based on the submitted form           |
+| GET                               | search                    | Show search page                                  |
+| GET                               | transactions              | Show user's transactions history                  |
++-----------------------------------+---------------------------+---------------------------------------------------+
