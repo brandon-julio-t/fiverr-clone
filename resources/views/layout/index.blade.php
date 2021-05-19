@@ -15,6 +15,6 @@
 
 @yield('content')
 
-@include('layout.footer')
+@includeWhen(!request()->is('login') && !request()->is('register'), 'layout.footer')
 </body>
 </html>
