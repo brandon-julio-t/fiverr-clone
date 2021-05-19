@@ -75,7 +75,7 @@
         @enderror
     </div>
 
-    @error(strval(Str::of($name)->replace(['-', '_', '[]'], ' ')))
+    @error(strval(Str::of($name)->replace(['-', '[]'], ' ')))
     <p class="mt-2 text-sm text-red-600" id="{{ $name }}-error">{{ $message }}</p>
     @enderror
 </div>
