@@ -26,7 +26,7 @@ class ProfileUpdateRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'email' => 'required|unique:users,email|email:rfc,dns',
+            'email' => 'required|email:rfc,dns',
             'profile_picture' => 'file|image'
         ];
     }
