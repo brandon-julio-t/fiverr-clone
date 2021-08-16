@@ -8,6 +8,7 @@ use App\Models\GigImage;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Throwable;
 
 class GigDeleteController extends Controller
 {
@@ -17,6 +18,7 @@ class GigDeleteController extends Controller
      * @param Request $request
      * @param Gig $gig
      * @return RedirectResponse
+     * @throws Throwable
      */
     public function __invoke(Request $request, Gig $gig): RedirectResponse
     {

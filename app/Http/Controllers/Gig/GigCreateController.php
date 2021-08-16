@@ -9,6 +9,7 @@ use App\Models\GigImage;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\DB;
+use Throwable;
 
 class GigCreateController extends Controller
 {
@@ -17,6 +18,7 @@ class GigCreateController extends Controller
      *
      * @param GigCreateRequest $request
      * @return RedirectResponse
+     * @throws Throwable
      */
     public function __invoke(GigCreateRequest $request): RedirectResponse
     {
